@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width,height=device-height">
+    <script src="../lib/js/ionic.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../lib/css/ionic.min.css">
+
+</head>
+<body ng-controller="firstCtrl">
+
+
+<ion-nav-bar class="bar-positive"></ion-nav-bar>
+<ion-nav-view></ion-nav-view>
+
+<script type="text/ng-template" id="home.html">
+	<ion-view view-title="homeview">
+		<ion-content>
+			go home1111
+		</ion-content>
+	</ion-view>
+</script>
+
+<script type="text/ng-template" id="class.html">
+	Content of the template.home 
+</script>
+
+</body>
+<script type="text/javascript">
+    var app = angular.module("myApp", ["ionic"]);
+
+    app.config(function($stateProvider) {
+        $stateProvider
+            .state("map", {
+                templateUrl: "map.html"
+            })
+            .state("music", {
+                templateUrl: "home.html"
+            }) 
+            
+             ;
+
+
+    }).controller('firstCtrl',function($scope,$state){
+
+        $state.go('music');
+
+    })
+
+
+
+
+</script>
+
+
+</html>

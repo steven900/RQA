@@ -1,0 +1,52 @@
+<html ng-app="myApp">
+	<head>
+		<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width,height=device-height">
+	    <script src="lib/js/ionic.bundle.min.js"></script>
+   		<link rel="stylesheet" type="text/css" href="lib/css/ionic.min.css"/>
+   		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+   		<style type="text/css">
+	        ion-slide{
+	            height:150px;
+	            text-align:center;
+	        }
+	
+	        ion-slide img{
+	            height:150px;
+	
+	        }
+    	</style>
+   	</head>
+   	<body ng-controller="indexController">
+		
+		<ion-content class="has-header has-footer scroll-content">
+	        <ion-slide-box does-continue="false" show-pager="true">
+	           <ion-slide ng-repeat="item in data">
+					<img src="{{item.img}}" />
+			   </ion-slide>
+	        </ion-slide-box>
+	        <div class="row">
+	       		 <div class="col">
+	        		<img class="full-image" src="img/view2.png"/>
+	        	</div>
+	        </div>
+	        
+			<div class="row">
+				My name is Steven. 
+			</div>
+		</ion-content>
+
+   	</body> 
+   	<script>
+		var app =   angular.module('myApp', ['ionic']);
+		
+		app.controller('indexController',['$scope','$http',function($scope,$http){
+				$scope.data = [];
+				
+				$http.get('http://114.215.198.27:8080/wxcard/pics.do').success(function(data,state,headers,config){
+					console.log(data);
+					$scope.data = data;
+				});
+		}]);
+
+   	</script>
+</html>	 

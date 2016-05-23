@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>KindEditor</title>
+<script language="javascript" src="/js/ajaxfileupload/jquery.js"></script>
+<script language="javascript" src="/js/ajaxfileupload/ajaxfileupload.js"></script>
+<link rel="stylesheet" href="/js/kindeditor/plugins/fccs/style.css" type="text/css">
+<script>
+function ButtonState(isUpload){
+	if(isUpload == true) {
+		$('#btnUpload').val("正在上传").attr('disabled', true);
+		$('#loading').show();
+	}else{
+		$('#btnUpload').val("上传").attr('disabled', false);
+		$('#loading').hide();
+	}
+}
+
+function ajaxFileUpload() {
+	var KE = parent.KindEditor;
+	location.href.match(/\?id=([\w-]+)/i);
+	var id = RegExp.$1;
+	var params = KE.g[id].uploadParams;
+	params += '&watermark=' + $('#imgWater').val();
+	//alert(params);
+	ButtonState(true);
+   
+	$.ajaxFileUpload({
+		url: '/upload/uploadBig.do?' + params, 
+		secureuri: false,
+		fileElementId: 'fileToUpload',
+		dataType: 'json',
+		success: function(data, status) {
+			if(data.filename == '') {
+				alert('上传失败！' + data.message);
+			}else{
+				$('#url').val( data.domain + data.path + data.filename);
+				
+				var html = '<img src="' + data.domain + data.path + data.filename + '" width="120" height="120">';
+				$('#preview').html(html);
+			}
+			ButtonState(false);
+		},
+		error: function(data, status, e) {
+			alert('上传失败');
+			ButtonState(false);
+		}
+	});
+	return false;
+}
+</script>
+</head>
+
+<body>
+<table width="490" border="0" cellspacing="2" cellpadding="4">
+  <tr>
+    <td width="80" align="right" class="title">远程图片：</td>
+    <td width="410"><input type="text" id="url" name="url" value="http://" maxlength="255" class="text" /></td>
+  </tr>
+  <tr>
+    <td align="right" class="title">本地图片：</td>
+    <td><input id="fileToUpload" name="upload" type="file" class="text"/>
+      <input id="btnUpload" type="button" value="上传" onClick="return ajaxFileUpload();" />
+	  <img id="loading" src="/images/loading.gif" style="display:none;width:16px;height:16px;"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="right" class="title">说明：</td>
+    <td><input type="text" id="imgTitle" name="imgTitle" value="" maxlength="30" class="text"/></td>
+  </tr>
+  <tr>
+    <td align="right" class="title">宽度：</td>
+    <td><table border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><input type="text" name="imgWidth" id="imgWidth" value="0" maxlength="4" class="number" />
+        px</td>
+        <td width="70" align="right" class="title">高度：&nbsp;&nbsp;</td>
+        <td><input type="text" name="imgHeight" id="imgHeight" value="0" maxlength="4" class="number" />
+        px</td>
+        <td width="70" align="right" class="title">边框：&nbsp;&nbsp;</td>
+        <td><input type="text" name="imgBorder" id="imgBorder" value="0" maxlength="1" class="number" />
+        px</td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td align="right" class="title">水印：</td>
+    <td><select name="imgWater" id="imgWater">
+        <option value="0">无水印</option>
+        <option value="10">字水印</option>
+        <option value="1" selected>图水印(右下角)</option>
+        <option value="2">图水印(中间)</option>
+        <option value="3">图水印(底部)</option>
+        <option value="13">斜水印</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td height="125" align="right">&nbsp;</td>
+    <td>
+    <div id="preview"></div></td>
+  </tr>
+  <tr class="remark">
+    <td colspan="2">图片格式：JPG；图片大小：550*350像素 最佳，最大不超过800x600像素 </td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<ion-content class="has-header has-footer scroll-content">
+	        <ion-slide-box does-continue="false" show-pager="true">
+	            <ion-slide ng-repeat="item in data">
+						<img src="{{item.img}}" />
+			   </ion-slide>
+			   
+	        </ion-slide-box>
+	        <div class="row">
+	       		 <div class="col">
+	        		<img class="full-image" src="img/view2.png"/>
+	        	</div>
+	        </div>
+	        
+			<div class="row">
+				<div class="col">
+					  <img src="img/view1.png" style="height:100px;" class="full-image" ui-sref="music"/>
+					  <li class="item item-icon-right">
+							<a class="button ion ion-home" >go home</a>
+					</li>
+				</div>
+	            <div class="col">
+	            	  <img src="img/view1.png" style="height:100px;" class="full-image"  ui-sref="music" />
+	            </div>
+			</div>
+		</ion-content>

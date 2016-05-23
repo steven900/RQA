@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width,height=device-height">
+  <script src="../lib/js/ionic.bundle.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../lib/css/ionic.min.css">
+</head>
+<body ng-controller="myCtrl">
+	 <ion-slide-box>
+		  <ion-slide>
+		    <div class="box blue"><h1>BLUE</h1></div>
+		  </ion-slide>
+		  <ion-slide>
+		    <div class="box yellow"><h1>YELLOW</h1></div>
+		  </ion-slide>
+		  <ion-slide>
+		    <div class="box pink"><h1>PINK</h1></div>
+		  </ion-slide>
+	</ion-slide-box>
+
+
+<script>
+ 	 angular.module('myApp',['ionic'])
+ 	 .controller('myCtrl',function($scope,$interval,$ionicTabsDelegate){
+   
+ 		
+    });
+</script>
+</body>
+</html>
