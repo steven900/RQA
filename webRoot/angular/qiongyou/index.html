@@ -20,6 +20,8 @@
 		        color:red!important;
 		        }
     	</style>
+    	<script src="js/app.js"></script>
+    	<script src="js/controller.js"></script>
    	</head>
    	<body ng-controller="indexController">
    		
@@ -62,74 +64,19 @@
 			</ion-content>
 		</script>
 		
-		<!-- 
-	  	<div class="tabs">
-			<a class="tab-item" ui-sref="music"  on-click="on_select(1)">Home</a>
-			<a class="tab-item" ui-sref="home">music </a>
-			<a class="tab-item">Favorites</a>
-		    <a class="tab-item"> Settings</a>
-		 </div>
-		 
+	
 		 <ion-tabs class="tabs-default">
-			<a class="tab-item" ui-sref="music" on-select="on_select(1)">Home</a>
+			<a class="tab-item"  ng-click="on_select(1)">
+				Home
+				<img src="img/12.png" style="height:20px;margin-right:5px;" ng-if="flag"/>
+			</a>
 			
-			<a class="tab-item" ui-sref="home">music </a>
+			<a class="tab-item"   ng-click="on_select(2)">music</a>
 			<a class="tab-item">Favorites</a>
 		    <a class="tab-item"> Settings</a>
-			</ion-tabs>
-				 
-		 -->		
-		  
-		 <ion-tabs class="tabs-default">
-			<ion-tab title="Home" on-select="on_select(1)" ui-sref="music">
-				<ion-view>
-					<a class="tab-item"   on-click="on_select(1)">Home</a>
-				</ion-view>
-			</ion-tab>
-			<ion-tab title="music" on-select="on_select(2)" ui-sref="home">
-				<ion-view>
-					<a class="tab-item" >music </a>
-				</ion-view>
-			</ion-tab>
-			<ion-tab title="Favorites" on-select="on_select(3)">
-				<ion-view>
-					<a class="tab-item">Favorites</a>
-				</ion-view>
-			</ion-tab>
 		</ion-tabs>
-		
+	 
+				
    	</body> 
-   	<script>
-		var app =   angular.module('myApp', ['ionic']);
-		
-		app.config(function($stateProvider,$urlRouterProvider) {
-			$stateProvider
-			.state("music", {
-				templateUrl: "music.html"
-			})
-			 .state("home", {
-                templateUrl: "home.html"
-            })
-            
-		})
-		
-		.controller('indexController',['$scope','$http','$state',function($scope,$http,$state){
-				
-				$scope.data = [];
-				$http.get('http://114.215.198.27:8080/wxcard/pics.do').success(function(data,state,headers,config){
-					console.log(data);
-					$scope.data = data;
-				});
-				$state.go('music');
-				
-				$scope.on_select = function(idx){
-					//alert(1111);
-				}
-		}]);
-		
-		
-			
-		
-
-   	</script>
+ 
 </html>	 
