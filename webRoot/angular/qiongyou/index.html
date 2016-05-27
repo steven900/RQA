@@ -15,66 +15,30 @@
 	            height:150px;
 	
 	        }
-	        .red{color:red;}
-		              。 tab-item-active{
-		        color:red!important;
-		        }
+	       
     	</style>
     	<script src="js/app.js"></script>
     	<script src="js/controller.js"></script>
    	</head>
    	<body ng-controller="indexController">
-   		
-		
 		
 		<ion-nav-view></ion-nav-view>
-		
-		<script id="music.html" type="text/ng-template">
-			<div class="bar bar-header item-input-inset bgDarkGreen">
-			<img src="img/12.png" style="height:20px;margin-right:5px;"/>
-	        <label class="item-input-wrapper bgDDarkGreen padding-left">
-	        	<a><img src="img/search.png" style="height:15px;margin-top:5px;"/></a>
-	            <input type="text" placeholder="杈撳叆鎮ㄨ鎼滅储鐨勫唴瀹�" style="color:white;">
-	       	 </label>
-		</div>
-			<ion-content class="has-header has-footer scroll-content">
-	        	<ion-slide-box does-continue="false" show-pager="true">
-	           	 <ion-slide ng-repeat="item in data">
-							<img src="{{item.img}}" />
-			   	</ion-slide>
-			   
-	        	</ion-slide-box>
-	        	<div class="row">
-	       			 <div class="col">
-	        			<img class="full-image" src="img/view2.png"/>
-	        		</div>
-	       		 </div>
-	        
-				<div class="row">
-					<div class="col">
-					 	 <img src="img/view1.png" style="height:100px;" class="full-image" ui-sref="home"/>
-					 	 <li class="item item-icon-right">
-							<a class="button ion ion-home"  ui-sref="home" >go home</a>
-						</li>
-					</div>
-	            	<div class="col">
-	            	  <img src="img/view1.png" style="height:100px;" class="full-image"  ui-sref="home" />
-	           		</div>
-				</div>
-			</ion-content>
-		</script>
-		
 	
-		 <ion-tabs class="tabs-default">
+		<div class="tabs">
 			<a class="tab-item"  ng-click="on_select(1)">
-				Home
-				<img src="img/12.png" style="height:20px;margin-right:5px;" ng-if="flag"/>
+				<img src="img/ic_tab_home_nomal.png" style="height:30px;margin-top:5px;" ng-if="!home"/>
+				<img src="img/ic_tab_home_selected.png" style="height:30px;margin-top:5px;" ng-if="home"/>
 			</a>
 			
-			<a class="tab-item"   ng-click="on_select(2)">music</a>
-			<a class="tab-item">Favorites</a>
-		    <a class="tab-item"> Settings</a>
-		</ion-tabs>
+			<a class="tab-item"   ng-click="on_select(2)">
+				<img src="img/ic_tab_discovery_nomal.png" style="height:35px;margin-top:3px;" ng-if="!music"/>
+				<img src="img/ic_tab_discovery_selected.png" style="height:35px;margin-top:3px;" ng-if="music"/>
+			</a>
+			<a class="tab-item"  ng-click="on_select(3)">
+				<img src="img/ic_tab_my_nomal.png" style="height:30px;margin-top:5px;" ng-if="!people"/>				
+				<img src="img/ic_tab_my_selected.png" style="height:30px;margin-top:5px;" ng-if="people"/>				
+			</a>
+		</div>
 	 
 				
    	</body> 

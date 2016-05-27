@@ -4,14 +4,21 @@ app.controller('indexController',['$scope','$http','$state',function($scope,$htt
 		$scope.data = data;
 	});
 	$state.go('music');
-	$scope.flag=true;
+	$scope.home=true;
+	
 	$scope.on_select = function(idx){
-		
+		$scope.home=false;
+		$scope.people=false;
+		$scope.music=false;
 		if(idx==1){
 			$state.go('music');
-			$scope.flag=true;
-		}else{
+			$scope.home=true;
+		}else if(idx==2){
 			$state.go('home');
+			$scope.music=true;
+		}else{
+			$state.go('usercenter');
+			$scope.people=true;
 		}
 	}
 }]);
